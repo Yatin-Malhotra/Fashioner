@@ -36,4 +36,4 @@ def generate_image(text, gender, race):
         image_url = None
 
 ######### TESTING BELOW ###########
-generate_image("blue jeans, white t-shirt, black leather jacket, red sneakers", "man", "brown")
+# generate_image("blue jeans, white t-shirt, black leather jacket, red sneakers", "man", "brown")
