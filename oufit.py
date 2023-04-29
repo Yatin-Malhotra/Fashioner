@@ -3,7 +3,7 @@ import re
 
 def outfit_generator(clothes, event):
 
-    openai.api_key = "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"
+    openai.api_key = "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"
     
     # Set up the OpenAI API
     model_engine = "text-davinci-002"
@@ -19,9 +19,18 @@ def outfit_generator(clothes, event):
         )
     
     output = extract_lines(response.choices[0].text)
-    print(output)
-    print(concat_array(output))
+    #print(output)
+    #print(concat_array(output))
     
+    prompt = f"Give me a walkthrough on how to style these items: {output}"
+    
+    response = openai.Completion.create(        
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=100
+        )
+    
+    #print(response.choices[0].text)
     
 def extract_lines(text):
     lines = text.split('\n')  # split the text into lines
@@ -44,6 +53,7 @@ def concat_array(arr):
 
 
 #clothes = ["blue jeans", "white t-shirt", "black leather jacket", "red sneakers", "brown hoodie", "baggy pants", "violet blazer", "vest", "football jersey", "basketball shoes", "dress shoes", "chinos"]
-# event = "wedding"
+#event = "wedding"
 
 #outfit_generator(clothes, event)
+
