@@ -1,0 +1,6 @@
+{% extends "index.html" %}
+{% block outfit %} 
+{% for filename in filenmaes %}
+<img src="{{filename}}" alt="">
+{% endfor %}
+{% endblock %}
