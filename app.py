@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, url_for
 from werkzeug.utils import secure_filename
 import os
+from classify import separator
+from oufit import outfit_generator
+from imager import generate_image
+from PIL import Image
 
 app = Flask(__name__)
-
-UPLOAD_FOLDER = 'static/uploads/'
-
 
 @app.route("/", methods=["POST", "GET"])
 def home():
@@ -13,13 +14,25 @@ def home():
 
         
         files = request.files.getlist('files[]')
-        file_names = []
-        for file in files:
-            filename = file.filename
-            file_names.append(filename)
-            file.save(os.path.join(UPLOAD_FOLDER, filename))
+        event = request.form['event']
 
-        return render_template('index.html', filenames=file_names)
+        for file in files:
+            name = file.filename
+            file.save(os.path.join('static/input', name))
+
+        images = []
+        for filename in os.listdir('static/input'):
+            if filename.endswith('.jpg') or filename.endswith('.png'):
+                img = Image.open(os.path.join('static/input', filename))
+                images.append(img)
+
+        clothes = separator(images)
+
+        
+        outfit = outfit_generator(clothes, event)
+        generate_image(outfit, "male", "white")
+
+        return render_template('index.html', outfit=True)
         
         
 
