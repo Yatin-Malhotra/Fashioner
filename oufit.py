@@ -44,6 +44,6 @@ def concat_array(arr):
 
 
 #clothes = ["blue jeans", "white t-shirt", "black leather jacket", "red sneakers", "brown hoodie", "baggy pants", "violet blazer", "vest", "football jersey", "basketball shoes", "dress shoes", "chinos"]
-event = "wedding"
+# event = "wedding"
 
 #outfit_generator(clothes, event)
