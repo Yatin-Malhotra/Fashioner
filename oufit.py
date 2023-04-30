@@ -3,12 +3,12 @@ import re
 
 def outfit_generator(clothes, event):
 
-    openai.api_key = "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"
+    openai.api_key = "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"
     
     # Set up the OpenAI API
     model_engine = "gpt-3.5-turbo"
     
-    prompt = f"in my closet, I have {clothes}. Make me just one outfit for a {event} with the items in my closet. At the end, can you just list the items used. At the end, can you just list the items used on separate lines using '-' at the beginning of each. Also do not repeat clothes of the same type or category (i.e. only give one footwear). Make sure there are at least some pants/jeans in each outfit."
+    prompt = f"in my closet, I have {clothes}. Make me just one outfit for a {event} with the items in my closet. Ensure that you put in some bottom wear such as pants or shorts or trousers. At the end, can you just list the items used. At the end, can you just list the items used on separate lines using '-' at the beginning of each. Also do not repeat clothes of the same type or category (i.e. only give one footwear). Make sure there are at least some 'pants/jeans' in each outfit."
     
     
     # #def generate_outfit():
