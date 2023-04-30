@@ -1,6 +1,21 @@
 {% extends "index.html" %}
 {% block outfit %} 
-{% for filename in filenmaes %}
-<img src="{{filename}}" alt="">
-{% endfor %}
+
+<div class="container mt-5">
+          
+    <div class="row">
+    {% for outfit in outfits %}
+        <div class="col-md-4 text-center">
+            <img src="{{ url_for('static', filename=outfit)}}" class="img-thumbnail" alt="Uploaded Image">
+        </div>
+    {% endfor %}
+  </div>
+</div>
+<div>
+    <pre>{{instructions}}</pre>
+</div>
+<form action="/reset" method="post">
+<button type="submit" class="btn btn-primary">Reset Wardrobe</button>
+</form>
+
 {% endblock %}
