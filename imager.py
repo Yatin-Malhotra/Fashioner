@@ -7,7 +7,7 @@ from io import BytesIO
 
 # Generate the Image
 def generate_image(text):
-    API_KEY = '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'
+    API_KEY = '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'
 
     prompt_text = f"A cartoon like outfit image for the following items {text} for a person"
 
