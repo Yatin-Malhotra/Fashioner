@@ -19,7 +19,14 @@ def home():
 
         for file in files:
             name = file.filename
-            file.save(os.path.join(UPLOAD_FOLDER, name))
+            save_path = os.path.join(UPLOAD_FOLDER, name)
+            
+            if not (os.path.isdir(save_path)):
+                file.save(save_path)
+
+            
+
+        
 
 
         images = []
