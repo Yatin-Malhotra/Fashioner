@@ -69,11 +69,13 @@ def separator(images):
     classified_images = []
     counter = 0
     for image in images:
-        dominant_color = get_dominant_color(image.filename)
+        filename = image.filename
+        dominant_color = get_dominant_color(filename)
         class_label = classifier(image)
         if class_label is not None:
             color_name = convert_rgb_to_names(dominant_color)
-            classified_image_with_color = color_name + " " + class_label
+            classified_image_with_color = color_name + "_" + class_label
+            os.rename(filename, f"static/{classified_image_with_color}.jpg")
             classified_images.append(classified_image_with_color)
         counter += 1
     return classified_images
