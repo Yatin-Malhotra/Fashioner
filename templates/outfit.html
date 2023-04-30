@@ -11,11 +11,16 @@
     {% endfor %}
   </div>
 </div>
-<div>
+<div class="container">
     <pre>{{instructions}}</pre>
 </div>
-<form action="/reset" method="post">
-<button type="submit" class="btn btn-primary">Reset Wardrobe</button>
-</form>
+<div class="container">
+    <form action="/reset" method="post">
+        <div class="mt-6 col-md-12">
+            <button type="submit" class="btn btn-primary">Reset Wardrobe</button>
+        </div>
+    </form>
+</div>
+
 
 {% endblock %}
