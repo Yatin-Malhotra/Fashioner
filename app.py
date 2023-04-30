@@ -1,12 +1,13 @@
-from flask import Flask, render_template, request, url_for
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, url_for, redirect
 import os
 from classify import separator
 from oufit import outfit_generator
-from imager import generate_image
+from instructor import instructions
 from PIL import Image
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = 'static/'
 
 @app.route("/", methods=["POST", "GET"])
 def home():
@@ -18,25 +19,43 @@ def home():
 
         for file in files:
             name = file.filename
-            file.save(os.path.join('static/input', name))
+            file.save(os.path.join(UPLOAD_FOLDER, name))
+
 
         images = []
-        for filename in os.listdir('static/input'):
+        for filename in os.listdir('static/'):
             if filename.endswith('.jpg') or filename.endswith('.png'):
-                img = Image.open(os.path.join('static/input', filename))
+                img = Image.open(os.path.join(UPLOAD_FOLDER, filename))
                 images.append(img)
 
         clothes = separator(images)
 
         
-        outfit = outfit_generator(clothes, event)
-        generate_image(outfit, "male", "white")
+        outfits = outfit_generator(clothes, event)
+        result = [s + ".jpg" for s in outfits]
 
-        return render_template('index.html', outfit=True)
+        # instructions_for_outfit = instructions(outfits)
+
+        return render_template('outfit.html', outfits=result, instructions = instructions(outfits))
         
         
 
     return render_template('index.html')
+
+@app.route('/reset', methods=["POST", "GET"])
+def reset():
+    # Iterate over all the files inside the folder
+    for filename in os.listdir('static'):
+        file_path = os.path.join('static', filename)
+        
+        # Check if it's a file
+        if os.path.isfile(file_path):
+            # Delete the file
+            os.remove(file_path)
+
+        
+    return redirect(url_for('home'))
+
        
 
 
