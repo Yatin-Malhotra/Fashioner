@@ -6,10 +6,10 @@ from PIL import Image
 from io import BytesIO
 
 # Generate the Image
-def generate_image(text, gender, race):
-    API_KEY = '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'
+def generate_image(text):
+    API_KEY = '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'
 
-    prompt_text = f"A cartoon like image for a fashionable outfit using only the following items {text} for a {race} {gender}"
+    prompt_text = f"A cartoon like outfit image for the following items {text} for a person"
 
     response = requests.post(
         "https://api.openai.com/v1/images/generations",
@@ -30,10 +30,10 @@ def generate_image(text, gender, race):
         image_url = response.json()["data"][0]["url"]
         response = requests.get(image_url)
         image = Image.open(BytesIO(response.content))
-        image.save(f"outfit.jpeg")
+        image.save("static/outfit.jpeg")
     except KeyError:
         print("Error: data not found in API response.")
         image_url = None
 
 ######### TESTING BELOW ###########
-# generate_image("blue jeans, white t-shirt, black leather jacket, red sneakers", "man", "brown")
+generate_image("black_sweatshirt, whitesmoke_jean, lavender_jersey, wheat_running_shoe")
