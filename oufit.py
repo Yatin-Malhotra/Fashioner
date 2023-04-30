@@ -3,7 +3,7 @@ import re
 
 def outfit_generator(clothes, event):
 
-    openai.api_key = "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"
+    openai.api_key = "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"
     
     # Set up the OpenAI API
     model_engine = "gpt-3.5-turbo"
