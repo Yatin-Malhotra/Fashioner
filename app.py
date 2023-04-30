@@ -30,11 +30,14 @@ def home():
 
         clothes = separator(images)
 
+        print("Clothes:", clothes)
+
         
         outfits = outfit_generator(clothes, event)
+        print("Outfits:", outfits)
         result = [s + ".jpg" for s in outfits]
 
-        # instructions_for_outfit = instructions(outfits)
+        instructions_for_outfit = instructions(outfits)
 
         return render_template('outfit.html', outfits=result, instructions = instructions(outfits))
         
@@ -53,8 +56,8 @@ def reset():
             # Delete the file
             os.remove(file_path)
 
-        
     return redirect(url_for('home'))
+    #return render_template(url_for('reset'))
 
        
 
