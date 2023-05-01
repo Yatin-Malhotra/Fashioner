@@ -79,16 +79,3 @@ def separator(images):
             classified_images.append(classified_image_with_color)
         counter += 1
     return classified_images
-
-######### TESTING BELOW ###########
-# dir_path = os.getcwd()
-
-# images = []
-# for filename in os.listdir(dir_path):
-#     if filename.endswith('.jpg') or filename.endswith('.png'):
-#         img = Image.open(os.path.join(dir_path, filename))
-#         images.append(img)
-
-# separated_array = separator(images)
-
-# print("Array: \n", separated_array)
