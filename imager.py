@@ -34,6 +34,3 @@ def generate_image(text):
     except KeyError:
         print("Error: data not found in API response.")
         image_url = None
-
-######### TESTING BELOW ###########
-generate_image("black_sweatshirt, whitesmoke_jean, lavender_jersey, wheat_running_shoe")
